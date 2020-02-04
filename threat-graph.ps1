@@ -37,27 +37,23 @@ get-sysmonlogs| %{
   #now build edges
   foreach ($v in $g.vertices.Keys) {
 
-  # $end = $g.vertices[$Vertices[$v].value.Key]
-  # $start = $g.vertices[$Vertices[$v].value.PKey]
-   #write-host $start.value.Key $end.value.Key
 
-   $end = $g.vertices[$v]
-   $start = $g.vertices[$end.value.PKey]
+
+      $end = $g.vertices[$v]
+      $start = $g.vertices[$end.value.PKey]
 
    
-   if( $start -ne $null ) {
+       if( $start -ne $null ) {
         
-        if ($start.findEdge($end) -eq $null) {
-             $edge = New-Object GraphEdge $start,$end,1
-             $g.AddEdge($edge)|Out-Null
-        }
-        else {
-           $e= $start.findEdge($end)
-           $e.weight = $e.weight +1
-
-        }
-
-    }
+            if ($start.findEdge($end) -eq $null) {
+                 $edge = New-Object GraphEdge $start,$end,1
+                 $g.AddEdge($edge)|Out-Null
+            }
+           else {
+              $e= $start.findEdge($end)
+              $e.weight = $e.weight +1
+           }
+      }
    
   }
 
