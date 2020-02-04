@@ -4,6 +4,7 @@ To get going with this you'll need to:
 
 1. Download Doug Finke's powershell alogithms: https://github.com/dfinke/powershell-algorithms
 2. Install GraphViz and PSGraph:
+
      #install GraphViz from Chocately
       Find-Package graphviz | Install-Package -ForceBootstrap
       
