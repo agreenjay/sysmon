@@ -18,6 +18,7 @@ To get going with this you'll need to:
      Import-Module PSGraph
 
 3. And finally install and import the delicious PSQuickGraph wrapper:
+
     Install-Module -Name PSQuickGraph
     
     Import-Module PSQuickGraph
