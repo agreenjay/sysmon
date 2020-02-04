@@ -31,9 +31,7 @@ get-sysmonlogs| %{
    $Vertex = New-Object GraphVertex $obj
    $g.addVertex($Vertex)|Out-Null
    
-   #if($Vertices[[string]$_.ProcessId] -eq $null) {$Vertices.Add($_.ProcessId,$Vertex)|Out-Null }
-  # if($Vertices[$_.ProcessId].value.Key -eq "RUNDLL32.EXE") { write-host $_.CommandLine; $_.CommandLine -match ".*`n.*" }
- }
+   }
 
  
   #now build edges
