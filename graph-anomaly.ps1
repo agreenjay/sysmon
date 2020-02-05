@@ -11,7 +11,6 @@ $h=$v.value.Weight
 $s=@() #subgraph
 $s+=$v
 
-$gotit=$false
  while (!$vertexQueue.isEmpty()) {
     $currentVertex = $vertexQueue.dequeue()
     
@@ -20,8 +19,7 @@ $gotit=$false
     foreach($e in $es) {
                 
         $ev= $e.endVertex
-                      
-       # if ( (($h + $ev.value.Weight) -gt .05*$GW) -and ($s.count -ne 1) -and ($h/$s.count -le $th) -and $extend) {  
+                       
        if ( ($h+ $ev.value.weight)/($s.count+1) -le $th ) {
            $s+=$ev
            $h =$h + $ev.value.weight         
