@@ -1,4 +1,4 @@
-# Sysmon Visualizaton and Tools
+# Sysmon Visualizaton and Tools (work in progress)
 A collection of useful PowerShell tools to collect, organize, and visualize Sysmon event data.
 To get going with this, you'll need to:
 
