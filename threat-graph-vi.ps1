@@ -1,4 +1,4 @@
-#Let's graph it!!!
+#Let's graph it using PSQuickGraph !!!
 $gv = New-Graph -Type BiDirectionalGraph
 
 
