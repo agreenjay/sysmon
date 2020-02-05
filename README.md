@@ -1,6 +1,6 @@
 # Sysmon Visualizaton and Tools
 A collection of useful PowerShell tools to collect, organize, and visualize Sysmon event data.
-To get going with this you'll need to:
+To get going with this, you'll need to:
 
 1. Download Doug Finke's powershell alogithms: https://github.com/dfinke/powershell-algorithms
 2. Install GraphViz and PSGraph:
