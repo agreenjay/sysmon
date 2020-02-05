@@ -1,4 +1,4 @@
-# sysmon
+# Sysmon
 A collection of useful PowerShell tools to collect, organize, and visualize Sysmon event data.
 To get going with this you'll need to:
 
@@ -23,7 +23,7 @@ To get going with this you'll need to:
     
     Import-Module PSQuickGraph
  
- # then download the Sysmon module and tools
+ # Then download the Sysmon module and tools
  5. import-module sysmon    
  6. . .\threat-graph.ps1  # build $g
  7. .\threat-graph-vi.ps1 # visualize!
