@@ -9,7 +9,7 @@ To get going with this, you'll need to:
      
       Find-Package graphviz | Install-Package -ForceBootstrap
       
-     #install moduel PSGraph 
+     #install module PSGraph 
      
      Find-Module PSGraph | Install-Module
      
