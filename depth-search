@@ -1,0 +1,25 @@
+#DepthSearch
+function depfs ($i) {
+  
+    if ($Vertices[$i] -eq $null) { return}
+    else {
+      write-host "----" $Vertices[$i].value.Key "|" $Vertices[$i].value.Cline "[$i]"
+    
+      depfs $Vertices[$i].value.PPid 
+    }   
+}
+
+
+
+  if ($args.count -eq 0) {return}
+  $name = $args[0]
+  foreach ($v in $Vertices.Keys) {
+  
+    if ($Vertices[$v].value.Key -eq $name) {
+        write-host `n `n
+        write-host "-Threat path: " $name "[$($Vertices[$v].value.Pid)]"
+        depfs $Vertices[$v].value.PPid
+    } 
+}
+
+
