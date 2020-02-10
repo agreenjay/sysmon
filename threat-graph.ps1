@@ -4,8 +4,7 @@
 . .\GraphEdge.ps1
 
 $g = New-Object Graph 1
-
-
+$Vertices = @{} #contains linked list of process hieararchies
 
 get-sysmonlogs| %{
    $obj= New-Object -TypeName psobject
@@ -31,7 +30,8 @@ get-sysmonlogs| %{
    $Vertex = New-Object GraphVertex $obj
    $g.addVertex($Vertex)|Out-Null
    
-   }
+    # create "linked list" based on PIDs
+   if($Vertices[[string]$_.ProcessId] -eq $null) {$Vertices.Add($_.ProcessId,$Vertex)|Out-Null }   }
 
  
   #now build edges
