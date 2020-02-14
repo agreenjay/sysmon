@@ -16,7 +16,9 @@ get-sysmonlogs| %{
    $obj |add-Member -MemberType NoteProperty -Name Pid   -Value $_.ProcessId
    $obj |add-Member -MemberType NoteProperty -Name PPid  -Value $_.ParentProcessId
    $obj |add-Member -MemberType NoteProperty -Name Weight  -Value 0
-
+   $obj |add-Member -MemberType NoteProperty -Name Cluster -Value ""
+   $obj| add-Member -MemberType NoteProperty -Name EdgeCnt -Value 0
+   $obj| add-Member -MemberType NoteProperty -Name Visited -Value 0
    
    if (!$_.CommandLine -contains $_.OriginalFileName) {
       $cl = $_.OriginalFileName +" " + $_.CommandLine
@@ -36,11 +38,12 @@ get-sysmonlogs| %{
  
   #now build edges
   foreach ($v in $g.vertices.Keys) {
-
-
-
-      $end = $g.vertices[$v]
-      $start = $g.vertices[$end.value.PKey]
+      $start = $Vertices[$v].value.Key
+      $end =  $Vertices[$v].value.PKey
+  
+      #now convert to G world
+      $end = $g.vertices[$end]
+      $start = $g.vertices[$start]
 
    
        if( $start -ne $null ) {
