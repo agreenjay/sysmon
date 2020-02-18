@@ -1,0 +1,111 @@
+#random walk
+
+
+function mult-matrix{
+    param (
+    $v, [hashtable]$m
+    )
+   
+    $nc,$mc,$pc = ($v.count - 1), ($m.count - 1), ($m[0].count -1)
+    if ($v.count -ne $m.count) {throw "Multiplication impossible"}
+    $vn = @(0)*($m[0].count)
+    foreach ($i in 0..$nc) {    
+        foreach ($j in 0..$pc) { 
+            $sum = 0
+            foreach ($k in 0..$mc){$sum += $m[$k][$i]*$v[$k]}
+            
+        }
+        $vn[$i]=$sum
+    }
+  $vn
+ }
+ 
+
+
+function v-index ( $n) {
+
+for ($i=0; $i -lt $g.vertices.count; $i++) {
+
+    if($g.vertices[$i].value.Key -eq $n) { return $i}
+
+}
+
+return -1   
+}
+
+
+$T = @{} #transition matrix
+
+for($ix=0; $ix -lt $g.vertices.count; $ix++) {
+    $start = $g.vertices[$ix]
+    #lets build a row
+    $row= @(0)*$g.vertices.count #initialize to 0
+   
+   
+   $w=0
+   foreach($e in $start.getEdges()) {   
+       $w+=$e.weight 
+   }
+   if ($w -eq 0) {
+      $row[$ix] =1
+
+   }
+   else {
+       #now create transition probability
+       foreach($e in $start.getEdges()) {
+           $ev = $e.endVertex
+           $p = $e.weight
+           $jx = v-index $ev.value.Key
+           $row[$jx]= $p/$w
+       }
+    }
+
+   $T[$ix] = $row
+
+}
+
+
+#now lets iterate the matrix using the random walk with restart formula:  p=c(pM) + (1-c)u
+$vn=@(0)*$g.vertices.count
+if(($sx=v-index $args[0]) -lt 0) { $sx=v-index "PowerShell.exe"}
+
+$vn[$sx]=1  #initial starting point
+$c=.7  # probablity of wandering
+
+
+
+for($i=0;$i -lt 20; $i++) { #should be enough -:)
+    $vn = (mult-matrix $vn $T)
+    #now adjust probabilites by $c = probility of not returning
+    $vn = $vn|% {$_*$c} #multiply by vector by $c :-)
+    #now add in return probability
+    $vn[$sx] = $vn[$sx] + (1-$c) 
+}
+
+#lets print out say top 10
+#first turn vn into an array of object {index of vector, probability}
+$objs= @{}
+for($i=0;$i -lt $vn.count;$i++) {
+
+    $objs.Add($i,$vn[$i])
+
+}
+
+$sorted = $objs.getEnumerator()|sort Value 
+# print out first en
+write-host "Possible Threats based on start node: $($($g.vertices[$sx].value.Key))"
+write-host "                                  Ranking"
+
+#get first five that are positive
+$count =0 
+$i =0
+While ($count -lt 10 -and $i -lt $g.vertices.count){
+    if ($sorted[$i].Value -eq 0) {$i++; continue} 
+    write-host "----" $g.vertices[$i].value.Key 
+    write-host "----------                        $($sorted[$i].Value)"
+    $count++
+    $i++
+}
+
+
+
