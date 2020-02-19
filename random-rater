@@ -1,6 +1,6 @@
 #random walk
 
-
+#borrowed from the Intertoobz
 function mult-matrix{
     param (
     $v, [hashtable]$m
@@ -47,7 +47,7 @@ for($ix=0; $ix -lt $g.vertices.count; $ix++) {
        $w+=$e.weight 
    }
    if ($w -eq 0) {
-      $row[$ix] =1
+      $row[$ix] =1  #lets keep it looping until it's restarted :-)
 
    }
    else {
@@ -65,12 +65,12 @@ for($ix=0; $ix -lt $g.vertices.count; $ix++) {
 }
 
 
-#now lets iterate the matrix using the random walk with restart formula:  p=c(pM) + (1-c)u
-$vn=@(0)*$g.vertices.count
+#now let's iterate the matrix using the random walk with restart formula:  p=c(pM) + (1-c)u
+$vn=@(0)*$g.vertices.count # $g from the threat-graph.ps1 script
 if(($sx=v-index $args[0]) -lt 0) { $sx=v-index "PowerShell.exe"}
 
 $vn[$sx]=1  #initial starting point
-$c=.7  # probablity of wandering
+$c=.7  # probablity of wandering, feel free to adjust
 
 
 
