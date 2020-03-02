@@ -1,7 +1,7 @@
 #random walk
 
 #borrowed from the Intertoobz
-function mult-matrix{
+function mult-matrix{  # just doing a left multiply of v*M
     param (
     $v, [hashtable]$m
     )
