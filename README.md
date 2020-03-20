@@ -1,7 +1,8 @@
 # Sysmon Visualizaton and Tools (work in progress)
-A collection of useful PowerShell tools to collect, organize, and visualize Sysmon event data.
-To get going with this, you'll need to:
+A collection of useful PowerShell tools to collect, organize, and visualize Sysmon event data. There's more background
+of what we're tring to accomplish in this blog post:https://www.varonis.com/blog/sysmon-and-threat-detection-exploring-the-sysmon-log/
 
+To get going with this, you'll need to:
 1. Download Doug Finke's powershell alogithms: https://github.com/dfinke/powershell-algorithms
 2. Install GraphViz and PSGraph:
 
@@ -27,4 +28,4 @@ To get going with this, you'll need to:
  5. import-module sysmon    
  6.  . .\threat-graph.ps1  # build $g
  7.  .\threat-graph-vi.ps1 # visualize!
- 8. Try out threat_search.ps1 and other scripts in repository (random-rater ..)
+ 8. Try out threat_search.ps1 and other scripts in repository (random-rater, ..)
